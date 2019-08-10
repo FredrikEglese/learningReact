@@ -40,6 +40,12 @@ class Board extends React.Component {
     // Coppies the value of the state rather than modifying
     // directly. We are treating the array as immutible
     const squares = this.state.squares.slice();
+    console.log(squares[i]);
+
+    if (calculateWinner(squares) || squares[i]){
+      return;
+    }
+
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
       squares: squares,
