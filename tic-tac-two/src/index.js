@@ -2,17 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-class Square extends React.Component {
-  render() {
-    return (
-      <button 
-        className="square"
-          onClick={()=>this.props.onClick()}
-      >
-        {this.props.value}
-      </button>
-    );
-  }
+// Square is now a function component because it's only contains
+// a render method, so it doesn't need as much object detail
+function Square(props){
+  return (
+    <button 
+      className="square"
+      onClick={props.onClick}
+    >
+      {props.value}
+    </button>
+  );
 }
   
   class Board extends React.Component {
