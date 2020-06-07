@@ -35,7 +35,7 @@ function Square(props){
       this.setState({
           squares: squares,
           xIsNext: !this.state.xIsNext,
-        });
+      });
     }
 
     renderSquare(i) {
@@ -45,6 +45,13 @@ function Square(props){
           onClick={() => this.handleClick(i)}
         />
       );
+    }
+
+    resetBoard() {
+      this.setState({
+        squares: Array(9).fill(null),
+        xIsNext: true,
+      });
     }
   
     render() {
@@ -74,6 +81,11 @@ function Square(props){
             {this.renderSquare(7)}
             {this.renderSquare(8)}
           </div>
+          <button
+            onClick={() => {this.resetBoard()}}
+          >
+              Reset
+          </button>
         </div>
       );
     }
