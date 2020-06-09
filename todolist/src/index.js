@@ -1,13 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './bootstrap.min.css';
   
-class ListItem extends React.Component {    
-  render() {
-    return (
-      <li key={this.props.key}>{this.props.text} <a onClick={this.props.onClick}>X</a></li>
-    );
-  }
+function ListItem(props) {    
+  return (
+    <li className="list-group-item" key={props.key}>{props.text} <button className="btn btn-danger float-right" onClick={props.onClick}>X</button></li>
+  );
+}
+
+function InputTextBox(props){
+  return (
+    <div className="input-group">
+      <input type="text" className="form-control" placeholder="New task content" defaultValue={props.text} />
+      <div className="input-group-append">
+        <button className="btn btn-outline-secondary" type="button" onClick={props.onClick}>Add Task</button>
+      </div>
+    </div>
+  )
 }
   
 class List extends React.Component {
@@ -20,6 +30,7 @@ class List extends React.Component {
         {key:2,text:"Take out the bins"},
         {key:3,text:"Make dinner"},
       ],
+      inputText: "TMP",
     }
   }
 
@@ -27,7 +38,22 @@ class List extends React.Component {
     const tmpItemList = this.state.itemList.slice().filter(obj => {return obj.key !== key;})
     this.setState({
       itemList: tmpItemList,
+      inputText: this.state.inputText,
     });
+  }
+
+  addItem(){
+    alert("Adding: " + this.state.inputText);
+    // const newKey = this.findKey();
+    const tmpItemList = this.state.itemList.slice().push({key:5, text:"A NEW TASK TEST"})
+    this.setState({
+      itemList: tmpItemList,
+      inputText: "",
+    });
+  }
+
+  findKey(){
+    return 6; // TODO: Make this actually do the right thing
   }
 
   render() {
@@ -40,9 +66,23 @@ class List extends React.Component {
     );
 
     return (
-      <ul>
-        {itemsList}
-      </ul>
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <ul className="list-group">
+            {itemsList}
+            </ul>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <InputTextBox
+              text={this.state.inputText}
+              onClick={()=>this.addItem()}
+            />
+          </div>
+        </div>
+      </div>
     );
   }
 }
