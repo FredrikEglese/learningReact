@@ -9,15 +9,28 @@ function ListItem(props) {
   );
 }
 
-function InputTextBox(props){
-  return (
-    <div className="input-group">
-      <input type="text" className="form-control" placeholder="New task content" defaultValue={props.text} />
-      <div className="input-group-append">
-        <button className="btn btn-outline-secondary" type="button" onClick={props.onClick}>Add Task</button>
+class InputTextBox extends React.Component{
+
+  constructor(props){
+    super(props);
+    this.state = {
+      text: props.text,
+      onClick: props.onClick,
+      onChange: props.onChange,
+    }
+  }
+
+  render() {
+    return (
+      <div className="input-group">
+        <input type="text" className="form-control" placeholder="New task content" value={this.state.text} onChange={this.onChange} />
+        <div className="input-group-append">
+          <button className="btn btn-outline-secondary" type="button" onClick={this.state.onClick}>Add Task</button>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
+  
 }
   
 class List extends React.Component {
@@ -43,17 +56,21 @@ class List extends React.Component {
   }
 
   addItem(){
-    alert("Adding: " + this.state.inputText);
-    // const newKey = this.findKey();
-    const tmpItemList = this.state.itemList.slice().push({key:5, text:"A NEW TASK TEST"})
+    const newKey = this.findKey();
+    const tmpItemList = this.state.itemList.slice();
     this.setState({
-      itemList: tmpItemList,
-      inputText: "",
+      itemList: [...tmpItemList, {key: newKey, text:this.state.inputText}],
+      inputText: "next",
     });
   }
 
   findKey(){
     return 6; // TODO: Make this actually do the right thing
+  }    
+  
+  textBoxChange(event){
+    const tmpItemList = this.state.itemList.slice();
+    this.setState({tmpItemList, inputText:event.target.value})
   }
 
   render() {
@@ -79,6 +96,7 @@ class List extends React.Component {
             <InputTextBox
               text={this.state.inputText}
               onClick={()=>this.addItem()}
+              onChange={()=>this.textBoxUpdate()}
             />
           </div>
         </div>
