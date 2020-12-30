@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {v4 as uuid} from 'uuid';
 import './index.css';
 import './bootstrap.min.css';
   
@@ -39,9 +40,9 @@ class List extends React.Component {
     super(props);
     this.state = {
       itemList: [
-        {key:1,text:"Dishes"},
-        {key:2,text:"Take out the bins"},
-        {key:3,text:"Make dinner"},
+        {key:uuid(),text:"Dishes"},
+        {key:uuid(),text:"Take out the bins"},
+        {key:uuid(),text:"Make dinner"},
       ],
       inputText: "TMP",
     }
@@ -56,17 +57,12 @@ class List extends React.Component {
   }
 
   addItem(){
-    const newKey = this.findKey();
     const tmpItemList = this.state.itemList.slice();
     this.setState({
-      itemList: [...tmpItemList, {key: newKey, text:this.state.inputText}],
+      itemList: [...tmpItemList, {key: uuid(), text:this.state.inputText}],
       inputText: "next",
     });
-  }
-
-  findKey(){
-    return 6; // TODO: Make this actually do the right thing
-  }    
+  }  
   
   textBoxChange(event){
     const tmpItemList = this.state.itemList.slice();
