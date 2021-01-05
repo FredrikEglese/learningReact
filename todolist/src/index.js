@@ -3,39 +3,8 @@ import ReactDOM from 'react-dom';
 import {v4 as uuid} from 'uuid';
 import './index.css';
 import './bootstrap.min.css';
-  
-function ListItem(props) {    
-  return (
-    <li className="list-group-item" key={props.key}>{props.text} <button className="btn btn-danger float-right" onClick={props.onClick}>X</button></li>
-  );
-}
-
-class InputTextBox extends React.Component{
-
-  constructor(props){
-    super(props);
-    this.state = {
-      text: props.text,
-      onClick: props.onClick,
-      onChange: props.onChange,
-    }
-  }
-
-  render() {
-    return (
-      <div className="input-group">
-        <input type="text" className="form-control" placeholder="New task content" value={this.state.text} onChange={this.onChange} />
-        <div className="input-group-append">
-          <button className="btn btn-outline-secondary" type="button" onClick={this.state.onClick}>Add Task</button>
-        </div>
-      </div>
-    )
-  }
-  
-}
-  
-class List extends React.Component {
-
+ 
+class ToDoApp extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -44,29 +13,32 @@ class List extends React.Component {
         {key:uuid(),text:"Take out the bins"},
         {key:uuid(),text:"Make dinner"},
       ],
-      inputText: "TMP",
+      inputText: '',
     }
+
+    this.textBoxChange = this.textBoxChange.bind(this);
+    this.addItem = this.addItem.bind(this);
   }
 
   deleteItem(key){
-    const tmpItemList = this.state.itemList.slice().filter(obj => {return obj.key !== key;})
     this.setState({
-      itemList: tmpItemList,
-      inputText: this.state.inputText,
+      itemList: this.state.itemList.slice().filter(obj => {return obj.key !== key;})
     });
   }
 
   addItem(){
+    if (this.state.inputText === '') return;
     const tmpItemList = this.state.itemList.slice();
     this.setState({
       itemList: [...tmpItemList, {key: uuid(), text:this.state.inputText}],
-      inputText: "next",
+      inputText: ''
     });
   }  
   
   textBoxChange(event){
-    const tmpItemList = this.state.itemList.slice();
-    this.setState({tmpItemList, inputText:event.target.value})
+    this.setState({
+      inputText: event.target.value
+    })
   }
 
   render() {
@@ -83,7 +55,7 @@ class List extends React.Component {
         <div className="row">
           <div className="col">
             <ul className="list-group">
-            {itemsList}
+              {itemsList}
             </ul>
           </div>
         </div>
@@ -91,8 +63,8 @@ class List extends React.Component {
           <div className="col">
             <InputTextBox
               text={this.state.inputText}
-              onClick={()=>this.addItem()}
-              onChange={()=>this.textBoxUpdate()}
+              onClick={this.addItem}
+              onChange={this.textBoxChange}
             />
           </div>
         </div>
@@ -101,11 +73,39 @@ class List extends React.Component {
   }
 }
 
+class InputTextBox extends React.Component{
+
+  constructor(props){
+    super(props);
+    this.state = {
+      onClick: props.onClick,
+      onChange: props.onChange,
+    }
+  }
+
+  render() {
+    return (
+      <div className="input-group">
+        <input type="text" className="form-control" placeholder="New task content" value={this.props.text} onChange={this.state.onChange} />
+        <div className="input-group-append">
+          <button className="btn btn-outline-secondary" type="button" onClick={this.state.onClick}>Add Task</button>
+        </div>
+      </div>
+    )
+  }
   
+}
+
+function ListItem(props) {    
+  return (
+    <li className="list-group-item">{props.text} <button className="btn btn-danger float-right" onClick={props.onClick}>X</button></li>
+  );
+}
+
 // ========================================
 
 ReactDOM.render(
-  <List />,
+  <ToDoApp />,
   document.getElementById('root')
 );
   
