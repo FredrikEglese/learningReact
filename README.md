@@ -1,6 +1,6 @@
 ### This repo is for my little projects while learning React JS
 
-I have been through the React tutorials and docs (here)[https://reactjs.org/docs/getting-started.html] to get an initial understanding of ReactJs.
+I have been through the React tutorials and docs [here](https://reactjs.org/docs/getting-started.html) to get an initial understanding of ReactJs.
 
 I followed along with the tutorial creating the tic-tac-old and tick-tac-two directories.
 
