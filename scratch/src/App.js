@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Counter from './Counter';
+import Users from './Users';
+
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 class App extends Component {
   constructor(props){
@@ -11,7 +13,7 @@ class App extends Component {
 
   render() {
     return ( 
-      <Counter />
+     <Users />
     );
   }
 }
