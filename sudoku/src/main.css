@@ -1,0 +1,22 @@
+.cell {
+    width: 40px;
+    height: 40px;
+    outline: 1px solid black;
+    float: left;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.cell-content {
+    user-select: none;
+}
+
+.board {
+    margin: 0 auto;
+    margin-top: 30px;
+    outline: 2px solid black;
+    height: 368px;
+    width: 369px;
+}
