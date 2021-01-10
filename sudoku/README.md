@@ -7,7 +7,7 @@ My plan for this is to look at no tutorials/source code for Sudoku engines and s
 The aim of this is to practice what I have learnt so far on passing state and event handling. Eventually I'd like to give a go and building my own (probably quite brute force) sudoku solver. 
 
 ## Timeline:
-- [ ] Have a simple sudoku board in HTML/CSS in a board component
-- [ ] Each value of the sudoku cells reflects the state of the board
+- [x] Have a simple sudoku board in HTML/CSS in a board component (Completed 10/1/20)
+- [x] Each value of the sudoku cells reflects the state of the board (Completed 10/1/20)
 - [ ] Number entry for each cell
 
