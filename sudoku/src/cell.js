@@ -11,7 +11,7 @@ class Cell extends React.Component {
 
   render() {
     return (
-      <div className='cell' onClick={this.state.onClick}>
+      <div className={(this.props.isFixed?'fixed-cell cell':'cell')} onClick={this.props.isFixed?null:this.state.onClick}>
         <p className='cell-content'>
             {this.props.value}
         </p>
