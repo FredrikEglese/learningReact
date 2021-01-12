@@ -13,7 +13,7 @@ class Cell extends React.Component {
     return (
       <div className={(this.props.isFixed?'fixed-cell cell':'cell')} onClick={this.props.isFixed?null:this.state.onClick}>
         <p className='cell-content'>
-            {this.props.value}
+            {this.props.value ? this.props.value : null}
         </p>
       </div>
     )
