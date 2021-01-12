@@ -3,57 +3,51 @@ import Cell from './cell'
 
 class Sudoku extends React.Component {
   constructor(props) {
-    super(props);
+    super(props);    
     this.state = {
       squares: [
-        Array(9).fill(null),
-        Array(9).fill(null),
-        Array(9).fill(null),
-        Array(9).fill(null),
-        Array(9).fill(null),
-        Array(9).fill(null),
-        Array(9).fill(null),
-        Array(9).fill(null),
-        Array(9).fill(null),
+        Array(9).fill([false,null]),
+        Array(9).fill([false,null]),
+        Array(9).fill([false,null]),
+        Array(9).fill([false,null]),
+        Array(9).fill([false,null]),
+        Array(9).fill([false,null]),
+        Array(9).fill([false,null]),
+        Array(9).fill([false,null]),
+        Array(9).fill([false,null]),
       ],
-      fixedCells: [[0,0],[1,1]],
       status: '',
     }
   }
 
-  renderCell(val, row, col, isFixed){
+  renderCell(cell, row, col){
     return (
       <Cell
-        value={val}
+        value={cell[1]}
         onClick={() => this.handleCellonClick(row, col)}
-        isFixed={isFixed}
+        isFixed={cell[0]}
         key={[row,col]}
       />
     )
   }
 
   handleCellonClick(row, col){
-    if (this.state.squares[row][col] === 9){
+    // At the moment, when a cell is clicked it will simply increment
+    // TODO: onClick highlights, then able to key in number
+    if (this.state.squares[row][col][1] === 9){
       this.setCellValue(row, col, null);
     } else {
-      this.setCellValue(row, col, this.state.squares[row][col]+1);
+      this.setCellValue(row, col, this.state.squares[row][col][1]+1);
     }
   }
 
-  setCellValue(row, col, value){
+  setCellValue(row, col, value) {
     let tempSquares = this.state.squares.slice();
-    tempSquares[row][col] = value;
+    tempSquares[row][col] = [false, value];
     this.setState({
       squares: tempSquares,
     })
   }
-
-  isFixedCell(requestedLocation){
-    var fixedCells = JSON.stringify(this.state.fixedCells);
-    var requestedCell = JSON.stringify(requestedLocation);
-    return (fixedCells.indexOf(requestedCell) !== -1);
-  }
-
 
   render() {
     return (
@@ -62,8 +56,8 @@ class Sudoku extends React.Component {
         <div className='board'>
           {this.state.squares.map((rowVals, rowNum) => (
             <div className={'band' + (rowNum%3 === 0 ? ' top-outline' : '')} >
-              {rowVals.map((colVal, colNum) => (
-                this.renderCell(colVal,rowNum, colNum, this.isFixedCell([rowNum,colNum]))
+              {rowVals.map((cell, colNum) => (
+                this.renderCell(cell, rowNum, colNum)
               ))}
             </div>
           ))}
