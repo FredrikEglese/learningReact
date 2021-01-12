@@ -45,15 +45,14 @@ class Sudoku extends React.Component {
   }
 
   checkIfComplete(){
-    var flattenedCells = this.state.squares.slice().flat(1)
-
-    console.log(flattenedCells.filter(cell => cell[1] !== 0).length)
+    var flattenedCells = this.state.squares.slice().flat(1);
+    
     if(flattenedCells.filter(cell => cell[1] === 0).length){
       return false;
     }
 
     // TODO: Check if this is a valid solution
-
+    return true;
   }
 
   render() {
