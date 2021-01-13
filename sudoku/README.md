@@ -9,8 +9,8 @@ The aim of this is to practice what I have learnt so far on passing state and ev
 ## Timeline:
 - [x] Have a simple sudoku board in HTML/CSS in a board component (Completed 10/1/20)
 - [x] Each value of the sudoku cells reflects the state of the board (Completed 10/1/20)
-- [x] Number entry for each cell (Copmleted 13/1/20)
-- [x] Check if solution is correct (Copmleted 13/1/20)
+- [x] Number entry for each cell (Completed 13/1/20)
+- [x] Check if solution is correct (Completed 13/1/20)
 - [ ] Load a new game from template 
 - [ ] Select a new game from a list of possible games
 - [ ] Style - Highlight the square, row and collumn of the selected cell
