@@ -13,6 +13,7 @@ class Cell extends React.Component {
   render() {
     var classNames = ClassNames({
       'cell': true,
+      'selected-cell': this.props.isSelected,
       'fixed-cell': this.props.isFixed,
     })
 

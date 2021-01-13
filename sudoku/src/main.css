@@ -13,6 +13,10 @@
     background-color: #999;
 }
 
+.selected-cell {
+    background-color: #9CF;
+}
+
 .cell-content {
     user-select: none;
 }
