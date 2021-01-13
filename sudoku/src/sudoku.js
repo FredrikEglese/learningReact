@@ -18,9 +18,16 @@ class Sudoku extends React.Component {
       ],
       selectedCell: [null, null],
     }
+
+    this.handleNumPress = this.handleNumPress.bind(this);
+
   }
 
-  renderCell(cell, row, col){
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleNumPress);
+  }
+
+  renderCell(cell, row, col) {
     var isSelected = JSON.stringify(this.state.selectedCell) === JSON.stringify([row,col]);
     return (
       <Cell
@@ -33,11 +40,23 @@ class Sudoku extends React.Component {
     )
   }
 
-  handleCellonClick(row, col){
-    // At the moment, when a cell is clicked it will simply increment
-    // TODO: onClick highlights, then able to key in number
-    this.setCellValue(row, col, ((this.state.squares[row][col][1]+1) % 10));
+  handleCellonClick(row, col) {
     this.setState({selectedCell: [row, col]});
+  }
+
+  handleNumPress(e) {
+    if(e.keyCode < 48 |
+      e.keyCode > 57 |
+      this.state.selectedCell[0] === null|
+      this.state.selectedCell[1] === null){
+      return;
+    }
+
+    this.setCellValue(
+      this.state.selectedCell[0],
+      this.state.selectedCell[1],
+      e.keyCode - 48)
+
   }
 
   setCellValue(row, col, value) {
