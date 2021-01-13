@@ -1,4 +1,5 @@
 import React from 'react';
+import ClassNames from 'classnames';
 
 class Cell extends React.Component {
   constructor(props) {
@@ -10,10 +11,18 @@ class Cell extends React.Component {
   }
 
   render() {
+    var classNames = ClassNames({
+      'cell': true,
+      'fixed-cell': this.props.isFixed,
+    })
+
+    var onClick = this.props.isFixed ? null : this.state.onClick;
+    var value = this.props.value ? this.props.value : null;
+
     return (
-      <div className={(this.props.isFixed?'fixed-cell cell':'cell')} onClick={this.props.isFixed?null:this.state.onClick}>
+      <div className={classNames} onClick={onClick}>
         <p className='cell-content'>
-            {this.props.value ? this.props.value : null}
+            {value}
         </p>
       </div>
     )
