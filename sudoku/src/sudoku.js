@@ -33,7 +33,7 @@ class Sudoku extends React.Component {
   handleCellonClick(row, col){
     // At the moment, when a cell is clicked it will simply increment
     // TODO: onClick highlights, then able to key in number
-    this.setCellValue(row, col, ((this.state.squares[row][col][1]+1) % 9));
+    this.setCellValue(row, col, ((this.state.squares[row][col][1]+1) % 10));
   }
 
   setCellValue(row, col, value) {
@@ -44,6 +44,32 @@ class Sudoku extends React.Component {
     })
   }
 
+  isArrayValid(line){
+    const correctSequence = "[1,2,3,4,5,6,7,8,9]";
+    return (JSON.stringify(line.map(x => x[1]).sort()) === correctSequence)
+  }
+
+  getCol(colNum){
+    var collumn = [];
+    for(var i = 0; i<this.state.squares.length; i++){
+      collumn.push(this.state.squares[i][colNum]);
+    }
+    return collumn;
+  }
+
+  getSquareValues(squareNum){
+    var valuesArray = [];
+    var baseRow = Math.floor(squareNum / 3) * 3;
+    var baseCol = (squareNum % 3) * 3;
+
+    valuesArray.push(this.state.squares[baseRow].slice(baseCol, baseCol + 3));
+    valuesArray.push(this.state.squares[baseRow + 1].slice(baseCol, baseCol + 3));
+    valuesArray.push(this.state.squares[baseRow + 2].slice(baseCol, baseCol + 3));
+
+    return valuesArray.flat(1);
+  }
+
+
   checkIfComplete(){
     var flattenedCells = this.state.squares.slice().flat(1);
     
@@ -51,14 +77,22 @@ class Sudoku extends React.Component {
       return false;
     }
 
-    // TODO: Check if this is a valid solution
+    for(var i = 0; i < 9; i++){
+      var thisRow = this.state.squares[i];
+      var thisCol = this.getCol(i);
+      var thisSquare = this.getSquareValues(i);
+
+      if (!this.isArrayValid(thisRow) || !this.isArrayValid(thisCol || !this.isArrayValid(thisSquare))){
+        return false;
+      }
+    }
     return true;
   }
 
   render() {
     var status = '';
     if (this.checkIfComplete()){
-      status = 'Winner!'
+      status = 'Winner!';
     }
 
     return (
