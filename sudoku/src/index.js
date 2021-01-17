@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import Sudoku from './sudoku';
 
 // Style
-import './main.css';
+import './style/main.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
 
 ReactDOM.render(

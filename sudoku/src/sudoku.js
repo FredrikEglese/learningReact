@@ -1,5 +1,7 @@
 import React from 'react';
-import Cell from './cell'
+import Cell from './cell';
+
+import {getNewProlem} from './problemGenerator';
 
 class Sudoku extends React.Component {
   constructor(props) {
@@ -20,6 +22,8 @@ class Sudoku extends React.Component {
     }
 
     this.handleNumPress = this.handleNumPress.bind(this);
+    this.newEasyBoard   = this.newEasyBoard.bind(this);
+    this.newMediumBoard = this.newMediumBoard.bind(this);
 
   }
 
@@ -57,6 +61,20 @@ class Sudoku extends React.Component {
       this.state.selectedCell[1],
       e.keyCode - 48)
 
+  }
+
+  newEasyBoard() {
+    this.setState({
+      squares: getNewProlem('easy'),
+      selectedCell: [null, null],
+    })
+  }
+
+  newMediumBoard() {
+    this.setState({
+      squares: getNewProlem('medium'),
+      selectedCell: [null, null],
+    })
   }
 
   setCellValue(row, col, value) {
@@ -120,6 +138,7 @@ class Sudoku extends React.Component {
     return (
       <div className='game'>
         <p className='status'>{status}</p>
+        
         <div className='board'>
           {this.state.squares.map((rowVals, rowNum) => (
             <div className={'band' + (rowNum%3 === 0 ? ' top-outline' : '')} >
@@ -128,6 +147,11 @@ class Sudoku extends React.Component {
               ))}
             </div>
           ))}
+        </div>
+
+        <div>
+          <button type='button' className='btn btn-outline-primary btn-lg btn-block' onClick={this.newEasyBoard}>New Easy Board</button>
+          <button type='button' className='btn btn-outline-primary btn-lg btn-block' onClick={this.newMediumBoard}>New Medium Board</button>
         </div>
       </div>
     );
