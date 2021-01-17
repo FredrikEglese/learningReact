@@ -12,7 +12,7 @@ The aim of this is to practice what I have learnt so far on passing state and ev
 - [x] Number entry for each cell (Completed 13/1/20)
 - [x] Check if solution is correct (Completed 13/1/20)
 - [x] Load a new game from template (Completed 17/1/20)
-- [ ] Select a new game from a selection of dificulties (Completed 17/1/20)
+- [x] Select a new game from a selection of dificulties (Completed 17/1/20)
 - [ ] Style - Highlight the square, row and collumn of the selected cell
 - [ ] Style - Add 3x3 thick borders
 
