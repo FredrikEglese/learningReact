@@ -110,11 +110,11 @@ class Sudoku extends React.Component {
     return valuesArray.flat(1);
   }
 
-  checkIfComplete(){
+  checkCompleteStatus(){
     var flattenedCells = this.state.squares.slice().flat(1);
     
     if(flattenedCells.filter(cell => cell[1] === 0).length){
-      return false;
+      return 'Not quite there yet :)';
     }
 
     for(var i = 0; i < 9; i++){
@@ -123,17 +123,14 @@ class Sudoku extends React.Component {
       var thisSquare = this.getSquareValues(i);
 
       if (!this.isArrayValid(thisRow) || !this.isArrayValid(thisCol || !this.isArrayValid(thisSquare))){
-        return false;
+        return 'Something not quite right...';
       }
     }
-    return true;
+    return 'Winner! Well done!';
   }
 
   render() {
-    var status = '';
-    if (this.checkIfComplete()){
-      status = 'Winner!';
-    }
+    var status = this.checkCompleteStatus();
 
     return (
       <div className='game'>
