@@ -129,7 +129,7 @@ class Sudoku extends React.Component {
       var thisCol = this.getCol(i);
       var thisSquare = this.getSquareValues(i);
 
-      if (!this.isArrayValid(thisRow) || !this.isArrayValid(thisCol || !this.isArrayValid(thisSquare))){
+      if (!this.isArrayValid(thisRow) || !this.isArrayValid(thisCol) || !this.isArrayValid(thisSquare)){
         return 'Something not quite right...';
       }
     }
