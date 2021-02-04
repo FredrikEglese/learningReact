@@ -1,8 +1,9 @@
 .cell {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     outline: 1px solid black;
-    float: left;
+    display: inline-block;
+    position: relative;
     margin-right: 1px;
     margin-bottom: 1px;
     text-align: center;
@@ -10,30 +11,48 @@
 }
 
 .fixed-cell {
-    background-color: #CCC;
+    background-color: rgb(224, 224, 224);
 }
 
 .selected-cell {
-    background-color: #9CF;
+    background-color: rgb(156, 201, 247);
+}
+
+.highligted-cell {
+    background-color: rgb(217, 234, 252);
+}
+
+.highlighted-fixed-cell {
+    background-color: rgb(184, 204, 223);
 }
 
 .cell-content {
-    padding-top: 6px;
+    font-size: 20pt;
+    padding-top: 9px;
     user-select: none;
+}
+
+.bottom-border{
+    border-bottom: 2px solid black;
+}
+
+.right-border{
+    border-right: 2px solid black;
 }
 
 .game {
     margin: 0 auto;
     margin-top: 30px;
-    width: 368px;
-    height: 400px;
-
+    width: 600px;
 }
 
 .board {
-    outline: 2px solid black;
-    height: 368px;
-    width: 369px;
+    outline: 3px solid black;
+    height: 549px;
+    width: 549px;
+    margin: auto;
+    position: relative;
+    overflow:hidden;
 }
 
 .status {

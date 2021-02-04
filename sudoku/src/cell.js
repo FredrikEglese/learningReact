@@ -15,6 +15,10 @@ class Cell extends React.Component {
       'cell': true,
       'selected-cell': this.props.isSelected,
       'fixed-cell': this.props.isFixed,
+      'highligted-cell': this.props.isHighligted,
+      'highlighted-fixed-cell': this.props.isHighligted & this.props.isFixed,
+      'bottom-border': this.props.row % 3 === 2 & this.props.row !== 8,
+      'right-border': this.props.col % 3 === 2 & this.props.col !== 8,
     })
 
     var onClick = this.props.isFixed ? null : this.state.onClick;

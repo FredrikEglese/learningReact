@@ -33,12 +33,19 @@ class Sudoku extends React.Component {
 
   renderCell(cell, row, col) {
     var isSelected = JSON.stringify(this.state.selectedCell) === JSON.stringify([row,col]);
+    if(!isSelected){
+      var isHighligted = (this.state.selectedCell[0] === row) | (this.state.selectedCell[1] === col);
+    }
+    
     return (
       <Cell
         value={cell[1]}
         onClick={() => this.handleCellonClick(row, col)}
         isFixed={cell[0]}
         isSelected={isSelected}
+        isHighligted={isHighligted}
+        row={row}
+        col={col}
         key={[row,col]}
       />
     )
@@ -110,11 +117,11 @@ class Sudoku extends React.Component {
     return valuesArray.flat(1);
   }
 
-  checkCompleteStatus(){
+  completeStatus(){
     var flattenedCells = this.state.squares.slice().flat(1);
     
     if(flattenedCells.filter(cell => cell[1] === 0).length){
-      return 'Not quite there yet :)';
+      return 'Sudoku!';
     }
 
     for(var i = 0; i < 9; i++){
@@ -130,15 +137,15 @@ class Sudoku extends React.Component {
   }
 
   render() {
-    var status = this.checkCompleteStatus();
+    var status = this.completeStatus();
 
     return (
       <div className='game'>
-        <p className='status'>{status}</p>
+        <h2 className='status'>{status}</h2>
         
         <div className='board'>
           {this.state.squares.map((rowVals, rowNum) => (
-            <div className={'band' + (rowNum%3 === 0 ? ' top-outline' : '')} >
+            <div className={'band'} >
               {rowVals.map((cell, colNum) => (
                 this.renderCell(cell, rowNum, colNum)
               ))}
@@ -146,7 +153,7 @@ class Sudoku extends React.Component {
           ))}
         </div>
 
-        <div>
+        <div className='pt-3'>
           <button type='button' className='btn btn-outline-primary btn-lg btn-block' onClick={this.newEasyBoard}>New Easy Board</button>
           <button type='button' className='btn btn-outline-primary btn-lg btn-block' onClick={this.newMediumBoard}>New Medium Board</button>
         </div>
