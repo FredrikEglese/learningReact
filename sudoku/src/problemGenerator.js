@@ -1,13 +1,15 @@
+import CellObject from './cellObject'
+
 const blankProblem = [
-  Array(9).fill([false,0]),
-  Array(9).fill([false,0]),
-  Array(9).fill([false,0]),
-  Array(9).fill([false,0]),
-  Array(9).fill([false,0]),
-  Array(9).fill([false,0]),
-  Array(9).fill([false,0]),
-  Array(9).fill([false,0]),
-  Array(9).fill([false,0]),
+  Array(9).fill(new CellObject(false,0)),
+  Array(9).fill(new CellObject(false,0)),
+  Array(9).fill(new CellObject(false,0)),
+  Array(9).fill(new CellObject(false,0)),
+  Array(9).fill(new CellObject(false,0)),
+  Array(9).fill(new CellObject(false,0)),
+  Array(9).fill(new CellObject(false,0)),
+  Array(9).fill(new CellObject(false,0)),
+  Array(9).fill(new CellObject(false,0)),
 ]
 
 // TODO: Put these problems into csv files
@@ -43,11 +45,10 @@ function generateBoard(problemString) {
 
   for (let i = 0; i < 81; i++) {
     var boardVal = parseInt(problemString[i])
-    newBoard[Math.floor(i / 9)][i % 9] = [boardVal !== 0, boardVal];
+    newBoard[Math.floor(i / 9)][i % 9] = new CellObject(boardVal !== 0, boardVal);
   }
 
   return newBoard;
-  
 }
 
 export {getNewProlem};

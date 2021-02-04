@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Modules
-import Sudoku from './sudoku';
+import Sudoku from './sudoku.jsx';
 
 // Style
 import './style/main.css';
