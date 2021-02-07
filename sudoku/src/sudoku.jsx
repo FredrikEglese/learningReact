@@ -83,8 +83,6 @@ class Sudoku extends React.Component {
       squareValues: getNewProlem('easy'),
       selectedCell: new Cordinate(null, null),
     })
-
-    console.log(this.state.squares)
   }
 
   newMediumBoard() {
