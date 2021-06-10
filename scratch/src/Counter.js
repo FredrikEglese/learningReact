@@ -1,49 +1,32 @@
-import React, { Component } from 'react';
+import React, { useState } from "react";
 
-class Counter extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      counterValue: 0,
-      text: {
-          Increment: 'Increment',
-          Reset: 'Reset'
-      }
-    }
-    this.incrementCounter = this.incrementCounter.bind(this);
-    this.resetCounter = this.resetCounter.bind(this);
-  }
+import "./style/app.css";
 
+const Counter = () => {
+	const [counter, setCounter] = useState(0);
 
-  incrementCounter(){
-    this.setState({
-      counterValue: this.state.counterValue +1,
-    })
-  }
+	const increment1 = () => {
+		setCounter((x) => x + 1);
+	};
 
-  resetCounter(){
-    this.setState({
-      counterValue: 0,
-    })
-  }
+	const increment10 = () => {
+		setCounter((x) => x + 10);
+	};
 
-  render() {
-    return (
-      <div>
-        <p>Counter value: {this.state.counterValue}</p>
+	const resetCounter = () => {
+		setCounter(0);
+	};
 
-        <button onClick={this.incrementCounter}>
-            {this.state.text.Increment}
-        </button>
+	return (
+		<div>
+			<p>Counter value: {counter}</p>
 
-        <button onClick={this.resetCounter}>
-            {this.state.text.Reset}
-        </button>
+			<button onClick={increment1}>Increment by 1</button>
+			<button onClick={increment10}>Increment by 10</button>
 
-      </div>
-      
-    );
-  }
-}
+			<button onClick={resetCounter}>Reset</button>
+		</div>
+	);
+};
 
 export default Counter;

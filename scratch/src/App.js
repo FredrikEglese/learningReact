@@ -1,21 +1,8 @@
-import React, { Component } from 'react';
-import Users from './Users';
+import React from "react";
+import Counter from "./Counter";
 
-import '../node_modules/bootstrap/dist/css/bootstrap.css';
-
-class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-
-    }
-  }
-
-  render() {
-    return ( 
-     <Users />
-    );
-  }
-}
+const App = () => {
+	return <Counter />;
+};
 
 export default App;

@@ -1,0 +1,27 @@
+:root {
+	--font: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+		"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+body {
+	font-family: var(--font);
+}
+
+button {
+	padding: 10px 15px;
+	margin-right: 5px;
+	background-color: white;
+	border: 2px solid black;
+	color: black;
+	border-radius: 5px;
+	font-family: var(--font);
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: rgb(222, 222, 222);
+}
+
+button:active {
+	background-color: rgb(200, 200, 200);
+}
